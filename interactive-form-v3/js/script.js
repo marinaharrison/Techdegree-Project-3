@@ -33,7 +33,8 @@ tshirtDesign.addEventListener('change', e => {
     tshirtColor.disabled = false;
 
 if (e.target.value === 'js puns') {
-    //create the loop over the element
+    //Create the loop over the element targeting js puns only.
+    //If js puns is selected, only the js puns colors will show and others will be hidden.
     for (let i = 0; i < colorOptions.length; i++ ) {
      if (colorOptions[i].getAttribute('data-theme') === 'js puns' ){
          colorOptions[i].style.display = 'inherit';
@@ -41,6 +42,7 @@ if (e.target.value === 'js puns') {
          colorOptions[i].style.display = 'none';
         }
     }
+    //This is the same loop, but targeting the 'heart js' option.
 } else if (e.target.value === 'heart js') {
     for (let i = 0; i < colorOptions.length; i++ ) {
      if (colorOptions[i].getAttribute('data-theme') === 'heart js' ){
@@ -51,6 +53,32 @@ if (e.target.value === 'js puns') {
         }
     }
 });
+
+//***REGISTER FOR ACTIVITIES***/
+
+//Variables
+let regForActivities = document.getElementById('activities');
+let cost = document.getElementById('activities-cost');
+let totalCost = 0;
+
+//Created and event to listener for the selection of activities
+regForActivities.addEventListener('change', e => {
+    //adding parseInt to the target will parse through a string and return an interger
+    let eventCost = parseInt(e.target.getAttribute('data-cost'))
+    //if a box is checked the cost of the event will be added to the total cost.
+    if (e.target.checked){
+        totalCost += eventCost;
+    //if a box is unchecked, the cost will be removed from the total.    
+    } else {
+       totalCost -= eventCost; 
+    }
+    //used a template literal and interpolation to update the HTML with the total cost.
+    cost.innerHTML= `Total: $${totalCost}`
+});
+
+
+
+
 
 
 

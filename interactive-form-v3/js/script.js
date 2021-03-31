@@ -132,7 +132,8 @@ let form = document.querySelector('form');
   
 //add an event listener to the form to listen for submit
 form.addEventListener('submit', e => {
-    e.preventDefault();
+    e.preventDefault(); //prevents the form from refreshing when a user presses submit
+
 //Below will check if name is valid  
     e.target.nameInput;
     const isNameValid = nameInput.value;

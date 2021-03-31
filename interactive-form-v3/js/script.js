@@ -121,7 +121,7 @@ let email = document.getElementById('email');
 let cardNumber = document.getElementById('cc-num');
 let zipCode = document.getElementById('zip');
 let cvv = document.getElementById('cvv');
-let form = document.querySelectorAll('form');
+let form = document.querySelector('form');
 
 //Regex sources
 // name = /^[A-Za-z]+$/ //from regex Treehouse Workspace
@@ -133,16 +133,15 @@ let form = document.querySelectorAll('form');
 //add an event listener to the form to listen for submit
 form.addEventListener('submit', e => {
     e.preventDefault();
-
 //Below will check if name is valid  
     e.target.nameInput;
     const isNameValid = nameInput.value;
     const nameTest = /^[A-Za-z]+$/.test(isNameValid);
     if(nameTest){
-        nameInput.parentNode.classList.add('valid');
+        nameInput.parentElement.classList.add('valid');
         }
         else {
-          nameInput.parentNode.classList.add('not-valid');
+          nameInput.parentElement.classList.add('not-valid');
         }
 
 //Below will check if email is valid
@@ -150,10 +149,10 @@ e.target.email;
 const isEmailValid = email.value;
 const emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(isEmailValid);
 if(emailTest){
-    email.parentNode.classList.add('valid');
+    email.parentElement.classList.add('valid');
     }
     else {
-      email.parentNode.classList.add('not-valid');
+      email.parentElement.classList.add('not-valid');
     } 
     
 //Below will check if credit card is valid
@@ -161,10 +160,10 @@ e.target.cardNumber;
 const isCcValid = cardNumber.value;
 const ccTest = /^4[0-9]{12}(?:[0-9]{3})?$/.test(isCcValid);
 if(ccTest){
-    cardNumber.parentNode.classList.add('valid');
+    cardNumber.parentElement.classList.add('valid');
     }
     else {
-      cardNumber.parentNode.classList.add('not-valid');
+      cardNumber.parentElement.classList.add('not-valid');
     }
     
 //Below will check if zip code is valid
@@ -172,10 +171,10 @@ e.target.zipCode;
 const isZipValid = zipCode.value;
 const zipTest = /^[0-9]{5}/.test(isZipValid);
 if(zipTest){
-    zipCode.parentNode.classList.add('valid');
+    zipCode.parentElement.classList.add('valid');
     }
     else {
-      zipCode.parentNode.classList.add('not-valid');
+      zipCode.parentElement.classList.add('not-valid');
     }
     
 //Below will check if CVV is valid
@@ -183,11 +182,22 @@ e.target.cvv;
 const isCcvValid = cvv.value;
 const cvvTest = /^[0-9]{3}/.test(isCcvValid);
 if(cvvTest){
-    cvv.parentNode.classList.add('valid');
+    cvv.parentElement.classList.add('valid');
     }
     else {
-      cvv.parentNode.classList.add('not-valid');
+      cvv.parentElement.classList.add('not-valid');
     }     
 
 });
 
+//*************Accessibility************* */
+let activitiesCheck = document.querySelectorAll("input[type=checkbox]");
+
+for (let i = 0; i < activitiesCheck.length; i++) {
+    activitiesCheck[i].addEventListener('focus', (event) => {
+        activitiesCheck[i].parentElement.classList.add('focus');
+    });
+    activitiesCheck[i].addEventListener('blur', (event) => {
+        activitiesCheck[i].parentElement.classList.remove('focus');
+    });
+}

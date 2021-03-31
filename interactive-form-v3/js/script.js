@@ -186,8 +186,16 @@ if(cvvTest){
     }
     else {
       cvv.parentElement.classList.add('not-valid');
-    }     
-
+    }
+    
+//Below will check if activities is valid
+e.target.regForActivities;
+for (let i = 0; i < regForActivities.length; i++)
+if (e.target.checked){
+    regForActivities.parentElement.classList.add('valid');   
+} else {
+    regForActivities.parentElement.classList.add('not-valid');
+}
 });
 
 //*************Accessibility************* */

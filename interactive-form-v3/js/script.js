@@ -113,7 +113,6 @@ payment.addEventListener('change', e => {
 });
 
 //*************FORM VALIDATION***************/
-//reminder: i need to create a name variable
 //my register for activites variable is on line 63
 
 //Variables

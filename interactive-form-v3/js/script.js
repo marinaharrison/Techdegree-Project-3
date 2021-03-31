@@ -1,3 +1,6 @@
+//*******TECHDEGREE PROJECT 3*********/
+// author: Marina Harrison
+
 //Variables
 const jobRole = document.getElementById('title');
 const jobRoleOther = document.getElementById('other-job-role');
@@ -54,7 +57,7 @@ if (e.target.value === 'js puns') {
     }
 });
 
-//***REGISTER FOR ACTIVITIES***/
+    //*********REGISTER FOR ACTIVITIES************/
 
 //Variables
 let regForActivities = document.getElementById('activities');
@@ -76,9 +79,116 @@ regForActivities.addEventListener('change', e => {
     cost.innerHTML= `Total: $${totalCost}`
 });
 
+    //************PAYMENT INFO***********/
 
+//Variables
+let payment = document.getElementById('payment');
+let creditcard = document.getElementById('credit-card');
+let paypal = document.getElementById('paypal');
+let bitcoin = document.getElementById('bitcoin');
 
+//Hide the paypal and bitcoin elements
+paypal.style.display = 'none';
+bitcoin.style.display = 'none';
 
+//target payment second child element and give it the "selected" property
+const selectPayment = payment.firstElementChild.nextElementSibling;
+selectPayment.setAttribute('selected', 'selected');
 
+//show the payment method that is selected
+payment.addEventListener('change', e => {
+    if (e.target.value === 'paypal') {
+        paypal.style.display = 'block';
+        bitcoin.style.display = 'none';
+        creditcard.style.display = 'none';
+    } else if (e.target.value === 'bitcoin') {
+        bitcoin.style.display ='block';
+        paypal.style.display = 'none';
+        creditcard.style.display = 'none';
+    } else {
+        paypal.style.display ='none';
+        bitcoin.style.display = 'none';
+        creditcard.style.display='block';
+    }
+});
 
+//*************FORM VALIDATION***************/
+//reminder: i need to create a name variable
+//my register for activites variable is on line 63
+
+//Variables
+let nameInput = document.getElementById('name');
+let email = document.getElementById('email');
+let cardNumber = document.getElementById('cc-num');
+let zipCode = document.getElementById('zip');
+let cvv = document.getElementById('cvv');
+let form = document.querySelectorAll('form');
+
+//Regex sources
+// name = /^[A-Za-z]+$/ //from regex Treehouse Workspace
+// email = /^[^@]+@[^@.]+\.[a-z]+$/ //from regex Treehouse Workspace
+// credit card = /^4[0-9]{12}(?:[0-9]{3})?$/ //from stackoverflow: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
+// zip code = /^[0-9]{5}/
+// cvv = /^[0-9]{3}/  
+  
+//add an event listener to the form to listen for submit
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+//Below will check if name is valid  
+    e.target.nameInput;
+    const isNameValid = nameInput.value;
+    const nameTest = /^[A-Za-z]+$/.test(isNameValid);
+    if(nameTest){
+        nameInput.parentNode.classList.add('valid');
+        }
+        else {
+          nameInput.parentNode.classList.add('not-valid');
+        }
+
+//Below will check if email is valid
+e.target.email;
+const isEmailValid = email.value;
+const emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(isEmailValid);
+if(emailTest){
+    email.parentNode.classList.add('valid');
+    }
+    else {
+      email.parentNode.classList.add('not-valid');
+    } 
+    
+//Below will check if credit card is valid
+e.target.cardNumber;
+const isCcValid = cardNumber.value;
+const ccTest = /^4[0-9]{12}(?:[0-9]{3})?$/.test(isCcValid);
+if(ccTest){
+    cardNumber.parentNode.classList.add('valid');
+    }
+    else {
+      cardNumber.parentNode.classList.add('not-valid');
+    }
+    
+//Below will check if zip code is valid
+e.target.zipCode;
+const isZipValid = zipCode.value;
+const zipTest = /^[0-9]{5}/.test(isZipValid);
+if(zipTest){
+    zipCode.parentNode.classList.add('valid');
+    }
+    else {
+      zipCode.parentNode.classList.add('not-valid');
+    }
+    
+//Below will check if CVV is valid
+e.target.cvv;
+const isCcvValid = cvv.value;
+const cvvTest = /^[0-9]{3}/.test(isCcvValid);
+if(cvvTest){
+    cvv.parentNode.classList.add('valid');
+    }
+    else {
+      cvv.parentNode.classList.add('not-valid');
+    }     
+
+});
 

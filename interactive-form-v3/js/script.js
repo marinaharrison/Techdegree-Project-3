@@ -37,7 +37,8 @@ tshirtDesign.addEventListener('change', e => {
 
 if (e.target.value === 'js puns') {
     //Create the loop over the element targeting js puns only.
-    //If js puns is selected, only the js puns colors will show and others will be hidden.
+    
+    tshirtColor[1].selected = true; //this targets the 'js puns' tshirt and makes sure it's selected
     for (let i = 0; i < colorOptions.length; i++ ) {
      if (colorOptions[i].getAttribute('data-theme') === 'js puns' ){
          colorOptions[i].style.display = 'inherit';
@@ -47,6 +48,7 @@ if (e.target.value === 'js puns') {
     }
     //This is the same loop, but targeting the 'heart js' option.
 } else if (e.target.value === 'heart js') {
+    tshirtColor[2].selected = true; // this targets the 'heart js' t shirt and makes sure it's selected
     for (let i = 0; i < colorOptions.length; i++ ) {
      if (colorOptions[i].getAttribute('data-theme') === 'heart js' ){
          colorOptions[i].style.display = 'inherit';
@@ -192,10 +194,10 @@ if(cvvTest){
 //Below will check if activities is valid
 e.target.regForActivities;
 for (let i = 0; i < regForActivities.length; i++)
-if (e.target.checked){
-    regForActivities.parentElement.classList.add('valid');   
+if (e.target.checked && totalCost > 0){
+    regForActivities.classList.add('valid');   
 } else {
-    regForActivities.parentElement.classList.add('not-valid');
+    regForActivities.classList.add('not-valid');
 }
 });
 

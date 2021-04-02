@@ -128,7 +128,7 @@ let form = document.querySelector('form');
 //Regex sources
 // name = /^[A-Za-z]+$/ - from regex Treehouse Workspace
 // email = /^[^@]+@[^@.]+\.[a-z]+$/ - from regex Treehouse Workspace
-// credit card = /^4[0-9]{12}(?:[0-9]{3})?$/ - from stackoverflow: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
+// credit card = /^\d{13,16}$/ - from stackoverflow: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
 // zip code = /^[0-9]{5}/
 // cvv = /^[0-9]{3}/  
   
@@ -158,10 +158,19 @@ if(emailTest){
       email.parentElement.classList.add('not-valid');
     } 
     
+//Below will check if activities are valid    
+e.target.regForActivities;
+    for (let i = 0; i < regForActivities.length; i++)
+    if (e.target.checked && totalCost != 0){
+        regForActivities.classList.add('valid');   
+    } else {
+        regForActivities.classList.add('not-valid');
+    }   
+
 //Below will check if credit card is valid
 e.target.cardNumber;
 const isCcValid = cardNumber.value;
-const ccTest = /^4[0-9]{12}(?:[0-9]{3})?$/.test(isCcValid);
+const ccTest = /^\d{13,16}$/.test(isCcValid);
 if(ccTest){
     cardNumber.parentElement.classList.add('valid');
     }
@@ -190,16 +199,9 @@ if(cvvTest){
     else {
       cvv.parentElement.classList.add('not-valid');
     }
-    
 //Below will check if activities is valid
-e.target.regForActivities;
-for (let i = 0; i < regForActivities.length; i++)
-if (e.target.checked && totalCost > 0){
-    regForActivities.classList.add('valid');   
-} else {
-    regForActivities.classList.add('not-valid');
-}
 });
+
 
 //*************Accessibility************* */
 let activitiesCheck = document.querySelectorAll("input[type=checkbox]");

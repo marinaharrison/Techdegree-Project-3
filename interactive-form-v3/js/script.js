@@ -160,8 +160,7 @@ if(emailTest){
     
 //Below will check if activities are valid    
 e.target.regForActivities;
-    for (let i = 0; i < regForActivities.length; i++)
-    if (e.target.checked && totalCost != 0){
+    if (totalCost != 0){
         regForActivities.classList.add('valid');   
     } else {
         regForActivities.classList.add('not-valid');

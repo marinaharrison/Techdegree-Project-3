@@ -199,7 +199,7 @@ if(cvvTest){
     else {
       cvv.parentElement.classList.add('not-valid');
     }
-//Below will check if activities is valid
+
 });
 
 

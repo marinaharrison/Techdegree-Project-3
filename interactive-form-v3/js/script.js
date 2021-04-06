@@ -137,8 +137,8 @@ form.addEventListener('submit', e => {
     e.preventDefault(); //prevents the form from refreshing when a user presses submit
 
 //Below will check if name is valid  
-    const isNameValid = nameInput.value;
-    const nameTest = /^([a-zA-Z]{1})/.test(isNameValid);
+const isNameValid = nameInput.value;
+const nameTest = /^([a-zA-Z]{1})/.test(isNameValid);
     if(nameTest){
         nameInput.parentElement.classList.add('valid');
         nameInput.parentElement.classList.remove('not-valid');
@@ -173,6 +173,7 @@ if(emailTest){
         regForActivities.classList.remove('valid');
 
     }   
+
 
 //Below will check if credit card is valid
 const isCcValid = cardNumber.value;

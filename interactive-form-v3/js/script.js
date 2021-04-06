@@ -137,66 +137,83 @@ form.addEventListener('submit', e => {
     e.preventDefault(); //prevents the form from refreshing when a user presses submit
 
 //Below will check if name is valid  
-    e.target.nameInput;
     const isNameValid = nameInput.value;
-    const nameTest = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/.test(isNameValid);
+    const nameTest = /^([a-zA-Z]{1})/.test(isNameValid);
     if(nameTest){
         nameInput.parentElement.classList.add('valid');
+        nameInput.parentElement.classList.remove('not-valid');
         }
         else {
           nameInput.parentElement.classList.add('not-valid');
+          nameInput.parentElement.classList.remove('valid');
+
         }
 
 //Below will check if email is valid
-e.target.email;
 const isEmailValid = email.value;
 const emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(isEmailValid);
 if(emailTest){
     email.parentElement.classList.add('valid');
+    email.parentElement.classList.remove('not-valid');
+
     }
     else {
       email.parentElement.classList.add('not-valid');
+      email.parentElement.classList.remove('valid');
+
     } 
     
 //Below will check if activities are valid    
-e.target.regForActivities;
     if (totalCost != 0){
-        regForActivities.classList.add('valid');   
+        regForActivities.classList.add('valid');
+        regForActivities.classList.remove('not-valid');   
+   
     } else {
         regForActivities.classList.add('not-valid');
+        regForActivities.classList.remove('valid');
+
     }   
 
 //Below will check if credit card is valid
-e.target.cardNumber;
 const isCcValid = cardNumber.value;
 const ccTest = /^\d{13,16}$/.test(isCcValid);
 if(ccTest){
     cardNumber.parentElement.classList.add('valid');
+    cardNumber.parentElement.classList.remove('not-valid');
+
     }
     else {
       cardNumber.parentElement.classList.add('not-valid');
+      cardNumber.parentElement.classList.remove('valid');
+
     }
     
 //Below will check if zip code is valid
-e.target.zipCode;
 const isZipValid = zipCode.value;
-const zipTest = /^[0-9]{5}/.test(isZipValid);
+const zipTest = /^[0-9]{5}$/.test(isZipValid);
 if(zipTest){
     zipCode.parentElement.classList.add('valid');
+    zipCode.parentElement.classList.remove('not-valid');
+
     }
     else {
       zipCode.parentElement.classList.add('not-valid');
+      zipCode.parentElement.classList.remove('valid');
+
     }
     
 //Below will check if CVV is valid
-e.target.cvv;
 const isCcvValid = cvv.value;
-const cvvTest = /^[0-9]{3}/.test(isCcvValid);
+const cvvTest = /^[0-9]{3}$/.test(isCcvValid);
 if(cvvTest){
     cvv.parentElement.classList.add('valid');
+    cvv.parentElement.classList.remove('not-valid');
+
     }
     else {
       cvv.parentElement.classList.add('not-valid');
+      cvv.parentElement.classList.remove('valid');
+
     }
 
 });

@@ -48,7 +48,7 @@ if (e.target.value === 'js puns') {
     }
     //This is the same loop, but targeting the 'heart js' option.
 } else if (e.target.value === 'heart js') {
-    tshirtColor[2].selected = true; // this targets the 'heart js' t shirt and makes sure it's selected
+    tshirtColor[4].selected = true; // this targets the 'heart js' t shirt and makes sure it's selected
     for (let i = 0; i < colorOptions.length; i++ ) {
      if (colorOptions[i].getAttribute('data-theme') === 'heart js' ){
          colorOptions[i].style.display = 'inherit';
@@ -126,7 +126,7 @@ let cvv = document.getElementById('cvv');
 let form = document.querySelector('form');
 
 //Regex sources
-// name = /^[A-Za-z]+$/ - from regex Treehouse Workspace
+// name = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/ - from stackoverflow: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
 // email = /^[^@]+@[^@.]+\.[a-z]+$/ - from regex Treehouse Workspace
 // credit card = /^\d{13,16}$/ - from stackoverflow: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
 // zip code = /^[0-9]{5}/
@@ -139,7 +139,7 @@ form.addEventListener('submit', e => {
 //Below will check if name is valid  
     e.target.nameInput;
     const isNameValid = nameInput.value;
-    const nameTest = /^[A-Za-z]+$/.test(isNameValid);
+    const nameTest = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/.test(isNameValid);
     if(nameTest){
         nameInput.parentElement.classList.add('valid');
         }
@@ -200,6 +200,7 @@ if(cvvTest){
     }
 
 });
+
 
 
 //*************Accessibility************* */

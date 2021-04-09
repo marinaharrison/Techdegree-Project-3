@@ -147,7 +147,6 @@ function isNameValid() {
     let nameTest = /^[A-Za-z]{1}/.test(nameValue);
     if (nameTest){
         isValid(name);
-        console.log(`name validation test on ${nameValue} evaluates to ${nameTest} `);
     } else {
         isNotValid(name);
 

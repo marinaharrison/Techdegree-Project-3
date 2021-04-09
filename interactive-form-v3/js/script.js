@@ -115,7 +115,7 @@ payment.addEventListener('change', e => {
 });
 
 //*************FORM VALIDATION***************/
-//my register for activites variable is on line 63
+//This section has been completely refactored after having trouble with my validators on multiple submissions.
 
 //Variables
 let nameInput = document.getElementById('name');
@@ -123,101 +123,125 @@ let email = document.getElementById('email');
 let cardNumber = document.getElementById('cc-num');
 let zipCode = document.getElementById('zip');
 let cvv = document.getElementById('cvv');
-let form = document.querySelector('form');
-
-//Regex sources
-// name = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/ - from stackoverflow: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
-// email = /^[^@]+@[^@.]+\.[a-z]+$/ - from regex Treehouse Workspace
-// credit card = /^\d{13,16}$/ - from stackoverflow: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
-// zip code = /^[0-9]{5}/
-// cvv = /^[0-9]{3}/  
+let form = document.querySelector('form'); 
   
-//add an event listener to the form to listen for submit
-form.addEventListener('submit', e => {
-    e.preventDefault(); //prevents the form from refreshing when a user presses submit
+//Function if the regex is accepted
 
-//Below will check if name is valid  
-const isNameValid = nameInput.value;
-const nameTest = /^([a-zA-Z]{1})/.test(isNameValid);
-    if(nameTest){
-        nameInput.parentElement.classList.add('valid');
-        nameInput.parentElement.classList.remove('not-valid');
-        }
-        else {
-          nameInput.parentElement.classList.add('not-valid');
-          nameInput.parentElement.classList.remove('valid');
+function isValid(element) {
+    element.parentElement.classList.add('valid');
+    element.parentElement.classList.remove('not-valid');
+    element.parentElement.lastElementChild.hidden = true;
+}
 
-        }
+//Function if regex is not accepted
+function isNotValid(element){
+    element.parentElement.classList.add('valid');
+    element.parentElement.classList.remove('not-valid');
+    element.parentElement.lastElementChild.hidden = false;
+}
 
-//Below will check if email is valid
-const isEmailValid = email.value;
-const emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(isEmailValid);
-if(emailTest){
-    email.parentElement.classList.add('valid');
-    email.parentElement.classList.remove('not-valid');
-
+//***Helper Functions***/
+//Name
+function isNameValid() {
+    let name = nameInput.value;
+    let nameTest = /^[A-Za-z]{1}/.test(name);
+    if (nameTest){
+        isValid(nameInput);
+    } else {
+        isNotValid(nameInput);
     }
-    else {
-      email.parentElement.classList.add('not-valid');
-      email.parentElement.classList.remove('valid');
+    return nameTest;
+}
 
-    } 
-    
-//Below will check if activities are valid    
+//Email
+function isEmailValid() {
+    let emailInput = email.value;
+    let emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(email);
+    if (emailTest){
+        isValid(emailInput);
+    } else {
+        isNotValid(emailInput);
+    }
+    return emailTest;
+}
+
+//Register for an at least 1 activity
+function isRegValid() {
     if (totalCost != 0){
         regForActivities.classList.add('valid');
         regForActivities.classList.remove('not-valid');   
-   
+        fieldset.lastElementChild.hidden = true;
     } else {
         regForActivities.classList.add('not-valid');
         regForActivities.classList.remove('valid');
+        fieldset.lastElementChild.hidden = false;
+} 
+}
 
-    }   
+//Credit Card
 
-
-//Below will check if credit card is valid
-const isCcValid = cardNumber.value;
-const ccTest = /^\d{13,16}$/.test(isCcValid);
-if(ccTest){
-    cardNumber.parentElement.classList.add('valid');
-    cardNumber.parentElement.classList.remove('not-valid');
-
+function isCreditValid() {
+    let cc = cardNumber.value;
+    let ccTest = /^\d{13,16}$/.test(cc);
+    if (ccTest){
+        isValid(cc);
+    } else {
+        isNotValid(cc);
     }
-    else {
-      cardNumber.parentElement.classList.add('not-valid');
-      cardNumber.parentElement.classList.remove('valid');
+    return ccTest;
+}
 
+//Zip Code
+function isZipValid() {
+    let zipInput = zipCode.value;
+    let zipTest = /^[0-9]{5}$/.test(zipInput);
+    if (zipTest){
+        isValid(zipInput);
+    } else {
+        isNotValid(zipInput);
     }
-    
-//Below will check if zip code is valid
-const isZipValid = zipCode.value;
-const zipTest = /^[0-9]{5}$/.test(isZipValid);
-if(zipTest){
-    zipCode.parentElement.classList.add('valid');
-    zipCode.parentElement.classList.remove('not-valid');
+    return zipTest;
+}
 
+//CVV
+function isCvvValid() {
+    let cvvInput = cvv.value;
+    let cvvTest = /^[0-9]{3}$/.test(cvvInput);
+    if (cvvTest){
+        isValid(cvvInput);
+    } else {
+        isNotValid(cvvInput);
     }
-    else {
-      zipCode.parentElement.classList.add('not-valid');
-      zipCode.parentElement.classList.remove('valid');
+    return cvvTest;
+}
 
+
+
+//Add an event listener to check to only submit if fields are valid
+form.addEventListener("submit", e => {
+    if (!isNameValid()) {
+      e.preventDefault();
     }
-    
-//Below will check if CVV is valid
-const isCcvValid = cvv.value;
-const cvvTest = /^[0-9]{3}$/.test(isCcvValid);
-if(cvvTest){
-    cvv.parentElement.classList.add('valid');
-    cvv.parentElement.classList.remove('not-valid');
-
+    if (!isEmailValid()) {
+        e.preventDefault();
+      }
+      if (!isRegValid()) {
+        e.preventDefault();
+      }
+      if (selectPayment.selected) {
+        if (!isCreditValid()) {
+          e.preventDefault();
+        }
+        if (!isZipValid()) {
+          e.preventDefault();
+        }
+        if (!isCvvValid()) {
+          e.preventDefault();
+        } else {
+          selectPayment.selected = false;
+        }
     }
-    else {
-      cvv.parentElement.classList.add('not-valid');
-      cvv.parentElement.classList.remove('valid');
-
-    }
-
-});
+  });
 
 
 
@@ -232,3 +256,10 @@ for (let i = 0; i < activitiesCheck.length; i++) {
         activitiesCheck[i].parentElement.classList.remove('focus');
     });
 }
+
+//Regex sources
+// name = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/ - from stackoverflow: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
+// email = /^[^@]+@[^@.]+\.[a-z]+$/ - from regex Treehouse Workspace
+// credit card = /^\d{13,16}$/ - from stackoverflow: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
+// zip code = /^[0-9]{5}/
+// cvv = /^[0-9]{3}/ 

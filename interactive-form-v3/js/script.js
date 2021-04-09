@@ -95,7 +95,7 @@ bitcoin.style.display = 'none';
 
 //target payment second child element and give it the "selected" property
 const selectPayment = payment.firstElementChild.nextElementSibling;
-selectPayment.setAttribute('selected', 'selected');
+selectPayment.selected = true;
 
 //show the payment method that is selected
 payment.addEventListener('change', e => {
@@ -118,15 +118,15 @@ payment.addEventListener('change', e => {
 //This section has been completely refactored after having trouble with my validators on multiple submissions.
 
 //Variables
-let nameInput = document.getElementById('name');
+let name = document.getElementById('name');
 let email = document.getElementById('email');
 let cardNumber = document.getElementById('cc-num');
 let zipCode = document.getElementById('zip');
 let cvv = document.getElementById('cvv');
-let form = document.querySelector('form'); 
+let form = document.querySelector('form');
+
   
 //Function if the regex is accepted
-
 function isValid(element) {
     element.parentElement.classList.add('valid');
     element.parentElement.classList.remove('not-valid');
@@ -135,20 +135,22 @@ function isValid(element) {
 
 //Function if regex is not accepted
 function isNotValid(element){
-    element.parentElement.classList.add('valid');
-    element.parentElement.classList.remove('not-valid');
+    element.parentElement.classList.remove('valid');
+    element.parentElement.classList.add('not-valid');
     element.parentElement.lastElementChild.hidden = false;
 }
 
 //***Helper Functions***/
 //Name
 function isNameValid() {
-    let name = nameInput.value;
-    let nameTest = /^[A-Za-z]{1}/.test(name);
+    let nameValue = name.value;
+    let nameTest = /^[A-Za-z]{1}/.test(nameValue);
     if (nameTest){
-        isValid(nameInput);
+        isValid(name);
+        console.log(`name validation test on ${nameValue} evaluates to ${nameTest} `);
     } else {
-        isNotValid(nameInput);
+        isNotValid(name);
+
     }
     return nameTest;
 }
@@ -156,11 +158,11 @@ function isNameValid() {
 //Email
 function isEmailValid() {
     let emailInput = email.value;
-    let emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(email);
+    let emailTest = /^[^@]+@[^@.]+\.[a-z]+$/.test(emailInput);
     if (emailTest){
-        isValid(emailInput);
+        isValid(email);
     } else {
-        isNotValid(emailInput);
+        isNotValid(email);
     }
     return emailTest;
 }
@@ -170,11 +172,11 @@ function isRegValid() {
     if (totalCost != 0){
         regForActivities.classList.add('valid');
         regForActivities.classList.remove('not-valid');   
-        fieldset.lastElementChild.hidden = true;
+        regForActivities.lastElementChild.hidden = true;
     } else {
         regForActivities.classList.add('not-valid');
         regForActivities.classList.remove('valid');
-        fieldset.lastElementChild.hidden = false;
+        regForActivities.lastElementChild.hidden = false;
 } 
 }
 
@@ -184,9 +186,9 @@ function isCreditValid() {
     let cc = cardNumber.value;
     let ccTest = /^\d{13,16}$/.test(cc);
     if (ccTest){
-        isValid(cc);
+        isValid(cardNumber);
     } else {
-        isNotValid(cc);
+        isNotValid(cardNumber);
     }
     return ccTest;
 }
@@ -196,9 +198,9 @@ function isZipValid() {
     let zipInput = zipCode.value;
     let zipTest = /^[0-9]{5}$/.test(zipInput);
     if (zipTest){
-        isValid(zipInput);
+        isValid(zipCode);
     } else {
-        isNotValid(zipInput);
+        isNotValid(zipCode);
     }
     return zipTest;
 }
@@ -208,9 +210,9 @@ function isCvvValid() {
     let cvvInput = cvv.value;
     let cvvTest = /^[0-9]{3}$/.test(cvvInput);
     if (cvvTest){
-        isValid(cvvInput);
+        isValid(cvv);
     } else {
-        isNotValid(cvvInput);
+        isNotValid(cvv);
     }
     return cvvTest;
 }

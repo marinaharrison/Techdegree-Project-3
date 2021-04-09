@@ -130,14 +130,14 @@ let form = document.querySelector('form');
 function isValid(element) {
     element.parentElement.classList.add('valid');
     element.parentElement.classList.remove('not-valid');
-    element.parentElement.lastElementChild.hidden = 'none';
+    element.parentElement.lastElementChild.style.display = 'none';
 }
 
 //Function if regex is not accepted
 function isNotValid(element){
     element.parentElement.classList.remove('valid');
     element.parentElement.classList.add('not-valid');
-    element.parentElement.lastElementChild.hidden = 'block';
+    element.parentElement.lastElementChild.style.display = 'block';
 }
 
 //***Helper Functions***/
@@ -171,15 +171,15 @@ function isRegValid() {
     if (totalCost !== 0){
         regForActivities.classList.add('valid');
         regForActivities.classList.remove('not-valid');   
-        regForActivities.lastElementChild.hidden = 'none';
+        regForActivities.lastElementChild.style.display = 'none';
     } else {
         regForActivities.classList.add('not-valid');
         regForActivities.classList.remove('valid');
-        regForActivities.lastElementChild.hidden = 'block';
+        regForActivities.lastElementChild.style.display = 'block';
 return totalCost !== 0
 } 
 }
-console.log(isRegValid());
+//console.log(isRegValid());
 
 //Credit Card
 

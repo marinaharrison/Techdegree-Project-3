@@ -171,15 +171,18 @@ function isRegValid() {
     if (totalCost !== 0){
         regForActivities.classList.add('valid');
         regForActivities.classList.remove('not-valid');   
-        regForActivities.lastElementChild.style.display = 'none';
+        regForActivities.lastElementChild.style.display = 'none';{
+            return true;
+        }
     } else {
         regForActivities.classList.add('not-valid');
         regForActivities.classList.remove('valid');
-        regForActivities.lastElementChild.style.display = 'block';
-return totalCost !== 0
-} 
+        regForActivities.lastElementChild.style.display = 'block';{
+            return totalCost !== 0
+        }
+    } 
 }
-//console.log(isRegValid());
+// console.log(isRegValid());
 
 //Credit Card
 
